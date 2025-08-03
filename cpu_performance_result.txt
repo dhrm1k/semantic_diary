@@ -1,0 +1,51 @@
+(venv) C:\Users\dharm\OneDrive\Desktop\webprojects\terminal-music-app\nlp.py>python cpu_performance_test.py
+CPU Performance Testing
+==================================================
+
+Test 1: Model Loading
+Starting CPU monitor...
+Loading model...
+Model loaded in 5.23 seconds
+Peak CPU during loading: 85.9%
+Average CPU during loading: 27.7%
+Memory after loading: 29720 MB
+
+Test 2: Embedding Generation (Multiple Notes)
+Generating embeddings for 5 notes...
+C:\Users\dharm\OneDrive\Desktop\webprojects\terminal-music-app\nlp.py\venv\Lib\site-packages\torch\nn\modules\module.py:1762: FutureWarning: `encoder_attention_mask` is deprecated and will be removed in version 4.55.0 for `BertSdpaSelfAttention.forward`.
+  return forward_call(*args, **kwargs)
+   Note 1: 0.043s (CPU: 48.1%)
+   Note 2: 0.018s (CPU: 66.7%)
+   Note 3: 0.024s (CPU: 88.9%)
+   Note 4: 0.015s (CPU: 62.5%)
+   Note 5: 0.060s (CPU: 84.4%)
+
+Average embedding time: 0.032s
+CPU usage: 24.4% -> 47.0%
+Memory usage: 29722 MB -> 29759 MB
+
+Test 3: Search Query Performance
+Testing search queries...
+   Query 1: 0.020s (CPU: 62.5%)
+   Query 2: 0.030s (CPU: 94.1%)
+   Query 3: 0.053s (CPU: 67.9%)
+   Query 4: 0.023s (CPU: 100.0%)
+   Query 5: 0.021s (CPU: 81.2%)
+
+Average search time: 0.029s
+Average CPU during search: 81.1%
+
+Test 4: Concurrent Embedding Generation
+Running concurrent embedding generation...
+Concurrent processing completed in 0.10s
+CPU usage during concurrent ops: 32.0% -> 44.3%
+
+==================================================
+SUMMARY
+==================================================
+Model Loading: 5.2s (High CPU)
+Single Embedding: 32ms (Medium CPU)
+Search Query: 29ms (Low CPU)
+Memory Usage: ~29759MB after model load
+
+Results saved: {'model_load_time': 5.225572824478149, 'avg_embedding_time': np.float64(0.0319676399230957), 'avg_search_time': np.float64(0.029239130020141602), 'memory_usage_mb': 29759.390625}
