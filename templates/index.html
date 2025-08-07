@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Semantic Notes{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+    <h2>All Notes ({{ notes|length }})</h2>
+    <a href="/add" class="btn btn-success">✏️ Add New Note</a>
+</div>
+
+{% if notes %}
+    {% for note in notes %}
+    <div class="note-card">
+        <div class="note-content">{{ note[1] }}</div>
+        <div class="note-meta">
+            <strong>ID:</strong> {{ note[0] }} | 
+            <strong>Created:</strong> {{ note[2] }}
+        </div>
+    </div>
+    {% endfor %}
+{% else %}
+    <div class="no-notes">
+        <h3>No notes found</h3>
+        <p>Start by <a href="/add">adding your first note</a>!</p>
+    </div>
+{% endif %}
+{% endblock %}

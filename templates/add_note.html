@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Add Note - Semantic Notes{% endblock %}
+
+{% block content %}
+<h2>✏️ Add New Note</h2>
+
+{% if error %}
+    <div class="alert alert-error">{{ error }}</div>
+{% endif %}
+
+<div class="note-card">
+    <form method="POST">
+        <div class="form-group">
+            <label for="content">Note Content:</label>
+            <textarea 
+                name="content" 
+                id="content" 
+                placeholder="Write your note here... (e.g., 'Had coffee with Sarah to discuss the project')"
+                required
+                autofocus
+            ></textarea>
+        </div>
+        <div style="display: flex; gap: 1rem;">
+            <button type="submit" class="btn btn-success">💾 Save Note</button>
+            <a href="/" class="btn">❌ Cancel</a>
+        </div>
+    </form>
+</div>
+
+<div style="margin-top: 2rem; padding: 1rem; background: #e8f5e8; border-radius: 8px;">
+    <h3>💡 Tips for Better Semantic Search:</h3>
+    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+        <li>Write natural, descriptive sentences</li>
+        <li>Include context and details</li>
+        <li>Use specific names, places, or topics</li>
+        <li>Example: "Meeting with John about quarterly sales report" instead of just "meeting"</li>
+    </ul>
+</div>
+{% endblock %}

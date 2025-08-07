@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Search - Semantic Notes{% endblock %}
+
+{% block content %}
+<h2>🔍 Search Notes</h2>
+
+<div class="search-box">
+    <form method="GET" class="search-form">
+        <input 
+            type="text" 
+            name="q" 
+            value="{{ query }}" 
+            placeholder="Search for notes... (e.g., 'work meetings', 'travel plans', 'grocery list')"
+            autofocus
+        >
+        <button type="submit" class="btn">🔍 Search</button>
+    </form>
+</div>
+
+{% if query %}
+    <h3>Search Results for "{{ query }}"</h3>
+    
+    {% if results %}
+        <p style="color: #666; margin-bottom: 1rem;">Found {{ results|length }} similar notes:</p>
+        
+        {% for result in results %}
+        <div class="note-card">
+            <div class="note-content">{{ result.content }}</div>
+            <div class="note-meta">
+                <strong>ID:</strong> {{ result.id }} | 
+                <strong>Created:</strong> {{ result.created_at }} |
+                <span class="similarity-score">Similarity: {{ "%.2f"|format(result.similarity_score) }}</span>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="no-notes">
+            <h3>No similar notes found</h3>
+            <p>Try a different search query or <a href="/add">add a new note</a>.</p>
+        </div>
+    {% endif %}
+{% else %}
+    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-top: 1rem;">
+        <h3>How Semantic Search Works:</h3>
+        <p>Unlike traditional keyword search, this AI-powered search understands the <em>meaning</em> of your text. Try searching for:</p>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+            <li><strong>"work meetings"</strong> - finds notes about coffee chats, project discussions, etc.</li>
+            <li><strong>"shopping"</strong> - finds grocery lists, mall visits, online purchases</li>
+            <li><strong>"travel"</strong> - finds vacation plans, flight bookings, hotel reservations</li>
+            <li><strong>"health"</strong> - finds doctor appointments, workout routines, diet notes</li>
+        </ul>
+    </div>
+{% endif %}
+{% endblock %}
